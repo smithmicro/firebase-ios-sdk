@@ -139,33 +139,37 @@ static const NSTimeInterval kDefaultFetchTokenInterval = 7 * 24 * 60 * 60;  // 7
   return YES;
 }
 
+- (BOOL)requiresSecureCoding {
+  return YES;
+}
+
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
   BOOL needsMigration = NO;
   // These value cannot be nil
 
-  id authorizedEntity = [aDecoder decodeObjectForKey:kFIRInstanceIDAuthorizedEntityKey];
+  id authorizedEntity = [aDecoder decodeObjectOfClass:NSString.self forKey:kFIRInstanceIDAuthorizedEntityKey];
   if (![authorizedEntity isKindOfClass:[NSString class]]) {
     return nil;
   }
 
-  id scope = [aDecoder decodeObjectForKey:kFIRInstanceIDScopeKey];
+  id scope = [aDecoder decodeObjectOfClass:NSString.self forKey:kFIRInstanceIDScopeKey];
   if (![scope isKindOfClass:[NSString class]]) {
     return nil;
   }
 
-  id token = [aDecoder decodeObjectForKey:kFIRInstanceIDTokenKey];
+  id token = [aDecoder decodeObjectOfClass:NSString.self forKey:kFIRInstanceIDTokenKey];
   if (![token isKindOfClass:[NSString class]]) {
     return nil;
   }
 
   // These values are nullable, so only fail the decode if the type does not match
 
-  id appVersion = [aDecoder decodeObjectForKey:kFIRInstanceIDAppVersionKey];
+  id appVersion = [aDecoder decodeObjectOfClass:NSString.self forKey:kFIRInstanceIDAppVersionKey];
   if (appVersion && ![appVersion isKindOfClass:[NSString class]]) {
     return nil;
   }
 
-  id firebaseAppID = [aDecoder decodeObjectForKey:kFIRInstanceIDFirebaseAppIDKey];
+  id firebaseAppID = [aDecoder decodeObjectOfClass:NSString.self forKey:kFIRInstanceIDFirebaseAppIDKey];
   if (firebaseAppID && ![firebaseAppID isKindOfClass:[NSString class]]) {
     return nil;
   }
@@ -194,7 +198,7 @@ static const NSTimeInterval kDefaultFetchTokenInterval = 7 * 24 * 60 * 60;  // 7
     }
   }
 
-  id cacheTime = [aDecoder decodeObjectForKey:kFIRInstanceIDCacheTimeKey];
+  id cacheTime = [aDecoder decodeObjectOfClass:NSDate.self forKey:kFIRInstanceIDCacheTimeKey];
   if (cacheTime && ![cacheTime isKindOfClass:[NSDate class]]) {
     return nil;
   }
