@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'FirebaseMessaging'
-  s.version          = '10.21.0'
+  s.version          = '10.23.2'
   s.summary          = 'Firebase Messaging'
 
   s.description      = <<-DESC
@@ -11,33 +11,33 @@ device, and it is completely free.
                        DESC
 
   s.homepage         = 'https://firebase.google.com'
-  s.license          = { :type => 'Apache-2.0', :file => 'LICENSE' }
+#  s.license          = { :type => 'Apache-2.0', :file => 'LICENSE' }
   s.authors          = 'Google, Inc.'
 
   s.source           = {
-    :git => 'https://github.com/firebase/firebase-ios-sdk.git',
-    :tag => 'CocoaPods-' + s.version.to_s
+    :git => 'https://github.com/smithmicro/firebase-ios-sdk.git',
+    :tag => s.version.to_s
   }
   s.social_media_url = 'https://twitter.com/Firebase'
 
   ios_deployment_target = '11.0'
   osx_deployment_target = '10.13'
   tvos_deployment_target = '12.0'
-  watchos_deployment_target = '6.0'
+#  watchos_deployment_target = '6.0'
 
   s.swift_version = '5.3'
 
   s.ios.deployment_target = ios_deployment_target
   s.osx.deployment_target = osx_deployment_target
   s.tvos.deployment_target = tvos_deployment_target
-  s.watchos.deployment_target = watchos_deployment_target
+#  s.watchos.deployment_target = watchos_deployment_target
 
   s.cocoapods_version = '>= 1.12.0'
   s.prefix_header_file = false
 
   base_dir = "FirebaseMessaging/"
   s.source_files = [
-    base_dir + 'Sources/**/*',
+    base_dir + 'Sources/**/*.{c,m,h}',
     base_dir + 'Sources/Protogen/nanopb/*.h',
     base_dir + 'Interop/*.h',
     'Interop/Analytics/Public/*.h',
@@ -45,6 +45,9 @@ device, and it is completely free.
     'FirebaseInstallations/Source/Library/Private/*.h',
   ]
   s.public_header_files = base_dir + 'Sources/Public/FirebaseMessaging/*.h'
+  s.resource_bundles = {
+    "#{s.module_name}_Privacy" => 'FirebaseMessaging/Sources/Resources/PrivacyInfo.xcprivacy'
+  }
   s.library = 'sqlite3'
   s.pod_target_xcconfig = {
     'GCC_C_LANGUAGE_STANDARD' => 'c99',
@@ -65,7 +68,7 @@ device, and it is completely free.
   s.dependency 'GoogleUtilities/Environment', '~> 7.8'
   s.dependency 'GoogleUtilities/UserDefaults', '~> 7.8'
   s.dependency 'GoogleDataTransport', '~> 9.3'
-  s.dependency 'nanopb', '>= 2.30908.0', '< 2.30910.0'
+  s.dependency 'nanopb', '>= 2.30908.0', '< 2.30911.0'
 
   s.test_spec 'unit' do |unit_tests|
     unit_tests.scheme = { :code_coverage => true }
