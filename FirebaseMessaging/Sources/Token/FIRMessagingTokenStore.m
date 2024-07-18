@@ -108,7 +108,8 @@ static NSString *const kFIRMessagingTokenKeychainId = @"com.google.iid-tokens";
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
       [NSKeyedUnarchiver setClass:[FIRMessagingTokenInfo class]
                      forClassName:@"FIRInstanceIDTokenInfo"];
-      tokenInfo = [NSKeyedUnarchiver unarchiveObjectWithData:item];
+//      tokenInfo = [NSKeyedUnarchiver unarchiveObjectWithData:item];
+      tokenInfo = nil;
 
 #pragma clang diagnostic pop
 

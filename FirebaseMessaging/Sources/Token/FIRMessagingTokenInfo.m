@@ -187,7 +187,8 @@ static const NSTimeInterval kDefaultFetchTokenInterval = 7 * 24 * 60 * 60;  // 7
                      forClassName:@"FIRInstanceIDAPNSInfo"];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-      rawAPNSInfo = [NSKeyedUnarchiver unarchiveObjectWithData:(NSData *)rawAPNSInfo];
+//      rawAPNSInfo = [NSKeyedUnarchiver unarchiveObjectWithData:(NSData *)rawAPNSInfo];
+      rawAPNSInfo = nil;
       needsMigration = YES;
 #pragma clang diagnostic pop
     } @catch (NSException *exception) {
